@@ -36,14 +36,23 @@
             this.label_ProgressoVisual = new System.Windows.Forms.Label();
             this.progressBar_progresso = new System.Windows.Forms.ProgressBar();
             this.button_Rename = new System.Windows.Forms.Button();
-            this.textBox_txtToRemove = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.textBox_txtToReplace = new System.Windows.Forms.TextBox();
             this.button_Reset = new System.Windows.Forms.Button();
             this.checkBox_save_folderLocation = new System.Windows.Forms.CheckBox();
             this.button_removeID = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.textBox_txtToRemove = new System.Windows.Forms.TextBox();
+            this.checkBox_replace_with = new System.Windows.Forms.CheckBox();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem_instructions = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem_check_update = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem_about = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox_informazioni.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox_informazioni
@@ -53,7 +62,7 @@
             this.groupBox_informazioni.Controls.Add(this.label_LogVisual);
             this.groupBox_informazioni.Controls.Add(this.label_ProgressoVisual);
             this.groupBox_informazioni.Controls.Add(this.progressBar_progresso);
-            this.groupBox_informazioni.Location = new System.Drawing.Point(12, 152);
+            this.groupBox_informazioni.Location = new System.Drawing.Point(12, 140);
             this.groupBox_informazioni.Name = "groupBox_informazioni";
             this.groupBox_informazioni.Size = new System.Drawing.Size(840, 220);
             this.groupBox_informazioni.TabIndex = 3;
@@ -105,7 +114,7 @@
             // 
             // button_Rename
             // 
-            this.button_Rename.Location = new System.Drawing.Point(12, 5);
+            this.button_Rename.Location = new System.Drawing.Point(717, 91);
             this.button_Rename.Name = "button_Rename";
             this.button_Rename.Size = new System.Drawing.Size(135, 43);
             this.button_Rename.TabIndex = 4;
@@ -113,45 +122,28 @@
             this.button_Rename.UseVisualStyleBackColor = true;
             this.button_Rename.Click += new System.EventHandler(this.button_Rename_Click);
             // 
-            // textBox_txtToRemove
-            // 
-            this.textBox_txtToRemove.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_txtToRemove.Location = new System.Drawing.Point(254, 5);
-            this.textBox_txtToRemove.Multiline = true;
-            this.textBox_txtToRemove.Name = "textBox_txtToRemove";
-            this.textBox_txtToRemove.Size = new System.Drawing.Size(598, 43);
-            this.textBox_txtToRemove.TabIndex = 5;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(162, 20);
+            this.label1.Location = new System.Drawing.Point(5, 34);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(86, 13);
             this.label1.TabIndex = 6;
             this.label1.Text = "Text to Remove:";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(162, 69);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 13);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Replace With:";
-            // 
             // textBox_txtToReplace
             // 
-            this.textBox_txtToReplace.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_txtToReplace.Location = new System.Drawing.Point(254, 54);
+            this.textBox_txtToReplace.Enabled = false;
+            this.textBox_txtToReplace.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_txtToReplace.Location = new System.Drawing.Point(108, 60);
             this.textBox_txtToReplace.Multiline = true;
             this.textBox_txtToReplace.Name = "textBox_txtToReplace";
-            this.textBox_txtToReplace.Size = new System.Drawing.Size(598, 43);
+            this.textBox_txtToReplace.Size = new System.Drawing.Size(744, 25);
             this.textBox_txtToReplace.TabIndex = 7;
             // 
             // button_Reset
             // 
-            this.button_Reset.Location = new System.Drawing.Point(717, 103);
+            this.button_Reset.Location = new System.Drawing.Point(435, 91);
             this.button_Reset.Name = "button_Reset";
             this.button_Reset.Size = new System.Drawing.Size(135, 43);
             this.button_Reset.TabIndex = 9;
@@ -162,7 +154,7 @@
             // checkBox_save_folderLocation
             // 
             this.checkBox_save_folderLocation.AutoSize = true;
-            this.checkBox_save_folderLocation.Location = new System.Drawing.Point(12, 103);
+            this.checkBox_save_folderLocation.Location = new System.Drawing.Point(8, 105);
             this.checkBox_save_folderLocation.Name = "checkBox_save_folderLocation";
             this.checkBox_save_folderLocation.Size = new System.Drawing.Size(127, 17);
             this.checkBox_save_folderLocation.TabIndex = 10;
@@ -171,7 +163,7 @@
             // 
             // button_removeID
             // 
-            this.button_removeID.Location = new System.Drawing.Point(12, 54);
+            this.button_removeID.Location = new System.Drawing.Point(576, 91);
             this.button_removeID.Name = "button_removeID";
             this.button_removeID.Size = new System.Drawing.Size(135, 43);
             this.button_removeID.TabIndex = 11;
@@ -179,28 +171,120 @@
             this.button_removeID.UseVisualStyleBackColor = true;
             this.button_removeID.Click += new System.EventHandler(this.button_removeID_Click);
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.helpToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(864, 24);
+            this.menuStrip1.TabIndex = 12;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exitToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem_instructions,
+            this.toolStripSeparator1,
+            this.toolStripMenuItem_check_update,
+            this.toolStripMenuItem_about});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Text = "Help";
+            // 
+            // textBox_txtToRemove
+            // 
+            this.textBox_txtToRemove.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_txtToRemove.Location = new System.Drawing.Point(108, 27);
+            this.textBox_txtToRemove.Multiline = true;
+            this.textBox_txtToRemove.Name = "textBox_txtToRemove";
+            this.textBox_txtToRemove.Size = new System.Drawing.Size(744, 25);
+            this.textBox_txtToRemove.TabIndex = 13;
+            // 
+            // checkBox_replace_with
+            // 
+            this.checkBox_replace_with.AutoSize = true;
+            this.checkBox_replace_with.Location = new System.Drawing.Point(8, 66);
+            this.checkBox_replace_with.Name = "checkBox_replace_with";
+            this.checkBox_replace_with.Size = new System.Drawing.Size(94, 17);
+            this.checkBox_replace_with.TabIndex = 14;
+            this.checkBox_replace_with.Text = "Replace With:";
+            this.checkBox_replace_with.UseVisualStyleBackColor = true;
+            this.checkBox_replace_with.CheckedChanged += new System.EventHandler(this.checkBox_replace_with_CheckedChanged);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Image = global::RenameFiles.Properties.Resources.exit;
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem_instructions
+            // 
+            this.toolStripMenuItem_instructions.Image = global::RenameFiles.Properties.Resources.instruction;
+            this.toolStripMenuItem_instructions.Name = "toolStripMenuItem_instructions";
+            this.toolStripMenuItem_instructions.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem_instructions.Text = "Instructions";
+            this.toolStripMenuItem_instructions.Click += new System.EventHandler(this.toolStripMenuItem_instructions_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            // 
+            // toolStripMenuItem_check_update
+            // 
+            this.toolStripMenuItem_check_update.Image = global::RenameFiles.Properties.Resources.update;
+            this.toolStripMenuItem_check_update.Name = "toolStripMenuItem_check_update";
+            this.toolStripMenuItem_check_update.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem_check_update.Text = "Check Update";
+            this.toolStripMenuItem_check_update.Click += new System.EventHandler(this.toolStripMenuItem_check_update_Click);
+            // 
+            // toolStripMenuItem_about
+            // 
+            this.toolStripMenuItem_about.Image = global::RenameFiles.Properties.Resources.info;
+            this.toolStripMenuItem_about.Name = "toolStripMenuItem_about";
+            this.toolStripMenuItem_about.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem_about.Text = "About";
+            this.toolStripMenuItem_about.Click += new System.EventHandler(this.toolStripMenuItem_about_Click);
+            // 
             // Form_RenameFiles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(864, 384);
+            this.ClientSize = new System.Drawing.Size(864, 365);
+            this.Controls.Add(this.checkBox_replace_with);
+            this.Controls.Add(this.textBox_txtToRemove);
             this.Controls.Add(this.button_removeID);
             this.Controls.Add(this.checkBox_save_folderLocation);
             this.Controls.Add(this.button_Reset);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox_txtToReplace);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox_txtToRemove);
             this.Controls.Add(this.button_Rename);
             this.Controls.Add(this.groupBox_informazioni);
+            this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "Form_RenameFiles";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Rename Files - v{0} - by MrBlackDemon";
+            this.Load += new System.EventHandler(this.Form_RenameFiles_Load);
             this.groupBox_informazioni.ResumeLayout(false);
             this.groupBox_informazioni.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -215,13 +299,21 @@
         private System.Windows.Forms.Label label_ProgressoVisual;
         private System.Windows.Forms.ProgressBar progressBar_progresso;
         private System.Windows.Forms.Button button_Rename;
-        private System.Windows.Forms.TextBox textBox_txtToRemove;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox_txtToReplace;
         private System.Windows.Forms.Button button_Reset;
         private System.Windows.Forms.CheckBox checkBox_save_folderLocation;
         private System.Windows.Forms.Button button_removeID;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.TextBox textBox_txtToRemove;
+        private System.Windows.Forms.CheckBox checkBox_replace_with;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_instructions;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_check_update;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_about;
     }
 }
 

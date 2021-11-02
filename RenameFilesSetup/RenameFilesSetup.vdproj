@@ -39,14 +39,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_5BABEFCBA97D4410AA3F9840C2C4ABAD"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_3785A065DAD3FA0D7261A9D02D237442"
+        "OwnerKey" = "8:_5BABEFCBA97D4410AA3F9840C2C4ABAD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_653B18B04517CDBD590C2F9DD059261E"
-        "OwnerKey" = "8:_5BABEFCBA97D4410AA3F9840C2C4ABAD"
+        "MsmKey" = "8:_5BABEFCBA97D4410AA3F9840C2C4ABAD"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -88,12 +88,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_653B18B04517CDBD590C2F9DD059261E"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_5BABEFCBA97D4410AA3F9840C2C4ABAD"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -127,6 +121,12 @@
         "OwnerKey" = "8:_25C71157E8637BD47FA2D7C9B1F3D639"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_3785A065DAD3FA0D7261A9D02D237442"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -145,6 +145,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -237,14 +245,14 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_653B18B04517CDBD590C2F9DD059261E"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_3785A065DAD3FA0D7261A9D02D237442"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:System.Net.Http, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
                 "ScatterAssemblies"
                 {
-                    "_653B18B04517CDBD590C2F9DD059261E"
+                    "_3785A065DAD3FA0D7261A9D02D237442"
                     {
                     "Name" = "8:System.Net.Http.dll"
                     "Attributes" = "3:512"
@@ -479,15 +487,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Rename Files - by MrBlackDemon"
-        "ProductCode" = "8:{544B2B4D-FDA7-4D04-B3E8-AD923EC3EDDC}"
-        "PackageCode" = "8:{D3AFD5A9-139D-4705-817F-3AC4A65BF7B3}"
+        "ProductCode" = "8:{F8ABDB54-B2E3-46A5-86F0-BCE169438F51}"
+        "PackageCode" = "8:{306316B9-4AFD-41AA-8EAF-30C221F0DCCC}"
         "UpgradeCode" = "8:{FA2CB2C2-8738-4FD4-B43C-57A52742E5C9}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.1.2"
+        "ProductVersion" = "8:1.2.0"
         "Manufacturer" = "8:MrBlackDemon"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://mrblackdemon.altervista.org"
@@ -1029,7 +1037,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_5BABEFCBA97D4410AA3F9840C2C4ABAD"
             {
-            "SourcePath" = "8:..\\RenameFiles\\obj\\Release\\Rename Files - v1.1.2.0 - by MrBlackDemon.exe"
+            "SourcePath" = "8:"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_5A32FA1335064E2F96062B6A71F48662"

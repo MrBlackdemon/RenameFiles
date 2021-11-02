@@ -7,22 +7,72 @@ using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using Microsoft.WindowsAPICodePack.Shell;
 using Microsoft.WindowsAPICodePack.Dialogs;
+using System.Net;
+using RenameFiles.Extensions;
 
 namespace RenameFiles
 {
     public partial class Form_RenameFiles : Form
     {
+        private string _currVersion { get; set; }
         private string _lastFolderUsed { get; set; }
         private string _removeFromFile { get { return this.textBox_txtToRemove.Text; } }
+        private bool _replace_enabled { get { return this.checkBox_replace_with.Checked; } }
         private string _replaceWith { get { return !string.IsNullOrEmpty(this.textBox_txtToReplace.Text) ? this.textBox_txtToReplace.Text : ""; } }
+
+        private readonly string mrblackdemon_base_path = "http://mrblackdemon.altervista.org/Programs/RenameFiles/";
 
         public Form_RenameFiles()
         {
             InitializeComponent();
             this.richTextBox_Log.AppendText(string.Format("{0}: START LOGGING", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")));
             this.richTextBox_Log.Refresh();
-            this.Text = string.Format(this.Text, Assembly.GetEntryAssembly().GetName().Version.ToString());
+            this._currVersion = Assembly.GetEntryAssembly().GetName().Version.ToString(3);
+            this.Text = string.Format(this.Text, this._currVersion);
         }
+
+        private void Form_RenameFiles_Load(object sender, EventArgs e)
+        {
+            // version Check
+            ChekUpdateAsync();
+        }
+
+        private void checkBox_replace_with_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this._replace_enabled)
+                this.textBox_txtToReplace.Enabled = true;
+            else
+                this.textBox_txtToReplace.Enabled = false;
+        }
+
+        #region ToolStrip MenuItem Clicks
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private async void toolStripMenuItem_check_update_Click(object sender, EventArgs e)
+        {
+            var updateAvailable = await ChekUpdateAsync();
+            if (!updateAvailable)
+            {
+                this.ShowMessageBox("You are using the latest version available.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void toolStripMenuItem_about_Click(object sender, EventArgs e)
+        {
+            AboutForm about = new AboutForm();
+            about.Show();
+        }
+
+        private void toolStripMenuItem_instructions_Click(object sender, EventArgs e)
+        {
+            this.ShowMessageBox("Coming Soon.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        #endregion ToolStrip MenuItem Clicks
 
         private void button_Reset_Click(object sender, EventArgs e)
         {
@@ -45,31 +95,7 @@ namespace RenameFiles
                 return;
             }
 
-            var directory = "";
-            try
-            {
-                CommonOpenFileDialog dialog = new CommonOpenFileDialog();
-                dialog.InitialDirectory = !string.IsNullOrEmpty(this._lastFolderUsed) ? this._lastFolderUsed : KnownFolders.Downloads.Path;
-
-                dialog.IsFolderPicker = true;
-                if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
-                {
-                    string folderName = new DirectoryInfo(dialog.FileName).Name;
-                    if (string.IsNullOrEmpty(dialog.FileName))
-                    {
-                        throw new Exception("Please select a valid folder.");
-                    }
-
-                    directory = dialog.FileName;
-                    this._lastFolderUsed = this.checkBox_save_folderLocation.Checked ? directory : "";
-                    this.AggiornaLog("Selected Folder: " + directory);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Something went wrong: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            var directory = OpenDirectorySelect();
 
             if (!string.IsNullOrEmpty(directory))
             {
@@ -103,10 +129,11 @@ namespace RenameFiles
                                 continue;
                             }
 
-                            var fNameReplaced = fName.Replace(this._removeFromFile, this._replaceWith).Trim();
-                            //var idToRemove = Regex.Match(fNameReplaced, @"\[ID(.*)\]").Value;
-                            //if (!string.IsNullOrEmpty(idToRemove))
-                            //    fNameReplaced = fNameReplaced.Replace(idToRemove, "");
+                            var fNameReplaced = fName;
+                            if (this._replace_enabled)
+                                fNameReplaced = fName.Replace(this._removeFromFile, this._replaceWith).Trim();
+                            else
+                                fNameReplaced = fName.Replace(this._removeFromFile, "").Trim();
 
                             var newFileName = string.Format("{0}{1}", fNameReplaced, ext);
                             var newPath = Path.Combine(path, newFileName);
@@ -145,22 +172,7 @@ namespace RenameFiles
 
         private void button_removeID_Click(object sender, EventArgs e)
         {
-            var directory = "";
-            using (var fbd = new FolderBrowserDialog())
-            {
-                if (this.checkBox_save_folderLocation.Checked)
-                    if (!string.IsNullOrEmpty(this._lastFolderUsed))
-                        fbd.SelectedPath = this._lastFolderUsed;
-
-                DialogResult result = fbd.ShowDialog();
-
-                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
-                {
-                    directory = fbd.SelectedPath;
-                    this._lastFolderUsed = directory;
-                    this.AggiornaLog("Selected Folder: " + directory);
-                }
-            }
+            var directory = OpenDirectorySelect();
 
             if (!string.IsNullOrEmpty(directory))
             {
@@ -231,6 +243,66 @@ namespace RenameFiles
                     this.AggiornaProgresso(".");
                 });
             }
+        }
+
+        private string OpenDirectorySelect()
+        {
+            var directory = "";
+            try
+            {
+                CommonOpenFileDialog dialog = new CommonOpenFileDialog();
+                dialog.InitialDirectory = !string.IsNullOrEmpty(this._lastFolderUsed) ? this._lastFolderUsed : KnownFolders.Downloads.Path;
+
+                dialog.IsFolderPicker = true;
+                if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
+                {
+                    string folderName = new DirectoryInfo(dialog.FileName).Name;
+                    if (string.IsNullOrEmpty(dialog.FileName))
+                    {
+                        throw new Exception("Please select a valid folder.");
+                    }
+
+                    directory = dialog.FileName;
+                    this._lastFolderUsed = this.checkBox_save_folderLocation.Checked ? directory : "";
+                    this.AggiornaLog("Selected Folder: " + directory);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowMessageBox("Something went wrong: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return directory;
+        }
+
+        private async Task<bool> ChekUpdateAsync()
+        {
+            bool updateAvailable = false;
+            string version = "";
+            try
+            {
+                WebClient client = new WebClient();
+                using (Stream stream = await client.OpenReadTaskAsync(new Uri(string.Format("{0}VersionInfo.txt", this.mrblackdemon_base_path), UriKind.Absolute)))
+                {
+                    StreamReader reader = new StreamReader(stream);
+                    version = await reader.ReadToEndAsync();
+                    reader.Close();
+                };
+
+                long currV = long.Parse(this._currVersion.Replace(".", ""));
+                long newV = long.Parse(version.Replace(".", ""));
+                if (currV < newV)
+                {
+                    updateAvailable = true;
+                    this.ShowUpdateForm(version);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowMessageBox("Something went wrong: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return updateAvailable;
         }
 
         #region DELEGATES 
@@ -324,6 +396,22 @@ namespace RenameFiles
             this.Refresh();
         }
 
+        private void ShowUpdateForm(string newversion)
+        {
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new ShowUpdateFormCallBack(this.ShowUpdateForm), new object[] { newversion });
+                return;
+            }
+
+            UpdateCheck update = new UpdateCheck()
+            {
+                SetCurrentVersion = this._currVersion,
+                SetNewVersion = newversion
+            };
+            update.Show();
+        }
+
         private delegate void ResetProgressBarCallBack();
         private delegate void BlockEnableFormElements_D(bool block);
         private delegate void IncrementProgressbarCallBack();
@@ -331,7 +419,7 @@ namespace RenameFiles
         private delegate void SetMaximumProgressBarCallBack(int maximum);
         private delegate void AggiornaProgressoCallBack(string messaggio);
         private delegate void ShowMessageBoxCallBack(string text, string title, MessageBoxButtons buttons, MessageBoxIcon icon);
-
+        private delegate void ShowUpdateFormCallBack(string newversion);
 
         #endregion
     }
