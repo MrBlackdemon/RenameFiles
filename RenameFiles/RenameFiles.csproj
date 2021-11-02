@@ -100,7 +100,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="license.txt" />
     <Content Include="rename.ico" />
     <Content Include="Windows Logo.png" />
   </ItemGroup>
