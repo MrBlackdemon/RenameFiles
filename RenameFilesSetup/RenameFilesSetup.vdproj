@@ -4,9 +4,9 @@
 "ProjectType" = "8:{978C614F-708E-4E1A-B201-565925725DBA}"
 "IsWebType" = "8:FALSE"
 "ProjectName" = "8:RenameFilesSetup"
-"LanguageId" = "3:1033"
+"LanguageId" = "3:0"
 "CodePage" = "3:1252"
-"UILanguageId" = "3:1033"
+"UILanguageId" = "3:0"
 "SccProjectName" = "8:"
 "SccLocalPath" = "8:"
 "SccAuxPath" = "8:"
@@ -161,6 +161,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 e x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -456,15 +472,15 @@
         }
         "MsiBootstrapper"
         {
-        "LangId" = "3:1033"
+        "LangId" = "3:0"
         "RequiresElevation" = "11:FALSE"
         }
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:RenameFiles"
-        "ProductCode" = "8:{75783E32-1D20-4373-A3FC-2AD1CB33E349}"
-        "PackageCode" = "8:{0E0A93E8-34CB-4918-B5B5-79CC0BB4F755}"
+        "ProductName" = "8:Rename Files - by MrBlackDemon"
+        "ProductCode" = "8:{544B2B4D-FDA7-4D04-B3E8-AD923EC3EDDC}"
+        "PackageCode" = "8:{D3AFD5A9-139D-4705-817F-3AC4A65BF7B3}"
         "UpgradeCode" = "8:{FA2CB2C2-8738-4FD4-B43C-57A52742E5C9}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -1013,7 +1029,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_5BABEFCBA97D4410AA3F9840C2C4ABAD"
             {
-            "SourcePath" = "8:..\\RenameFiles\\obj\\Debug\\Rename Files - v1.1.2.0 - by MrBlackDemon.exe"
+            "SourcePath" = "8:..\\RenameFiles\\obj\\Release\\Rename Files - v1.1.2.0 - by MrBlackDemon.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_5A32FA1335064E2F96062B6A71F48662"
