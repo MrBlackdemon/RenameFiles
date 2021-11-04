@@ -123,35 +123,60 @@ namespace RenameFiles
                             var fName = Path.GetFileNameWithoutExtension(f.FullName);
                             var ext = f.Extension;
 
-                            if (!fName.Contains(this._removeFromFile))
+                            var textToRemove = string.Empty;
+                            if (this.checkBox_use_regex.Checked)
+                            {
+                                var txtRegex = Regex.Match(fName, this._removeFromFile).Value;
+                                if (string.IsNullOrEmpty(txtRegex))
+                                {
+                                    i++;
+                                    continue;
+                                }
+
+                                textToRemove = txtRegex;
+                            }
+                            else
+                            {
+                                if (!fName.Contains(this._removeFromFile))
+                                {
+                                    i++;
+                                    continue;
+                                }
+
+                                textToRemove = this._removeFromFile;
+                            }
+
+                            if (!string.IsNullOrEmpty(textToRemove))
+                            {
+                                var fNameReplaced = fName;
+                                if (this._replace_enabled)
+                                    fNameReplaced = fName.Replace(textToRemove, this._replaceWith).Trim();
+                                else
+                                    fNameReplaced = fName.Replace(textToRemove, "").Trim();
+
+                                var newFileName = string.Format("{0}{1}", fNameReplaced, ext);
+                                var newPath = Path.Combine(path, newFileName);
+
+                                if (File.Exists(newPath))
+                                {
+                                    if (!Directory.Exists(Path.Combine(path, "Exists")))
+                                        Directory.CreateDirectory(Path.Combine(path, "Exists"));
+
+                                    var newPath1 = Path.Combine(path, "Exists", newFileName);
+                                    File.Move(f.FullName, newPath1);
+                                }
+                                else
+                                {
+                                    File.Move(f.FullName, newPath);
+                                }
+
+                                renamed++;
+                            }
+                            else
                             {
                                 i++;
                                 continue;
                             }
-
-                            var fNameReplaced = fName;
-                            if (this._replace_enabled)
-                                fNameReplaced = fName.Replace(this._removeFromFile, this._replaceWith).Trim();
-                            else
-                                fNameReplaced = fName.Replace(this._removeFromFile, "").Trim();
-
-                            var newFileName = string.Format("{0}{1}", fNameReplaced, ext);
-                            var newPath = Path.Combine(path, newFileName);
-
-                            if (File.Exists(newPath))
-                            {
-                                if(!Directory.Exists(Path.Combine(path, "Exists")))
-                                    Directory.CreateDirectory(Path.Combine(path, "Exists"));
-
-                                var newPath1 = Path.Combine(path, "Exists", newFileName);
-                                File.Move(f.FullName, newPath1);
-                            }
-                            else
-                            {
-                                File.Move(f.FullName, newPath);
-                            }
-
-                            renamed++;
                         }
                     }
                     catch (Exception ex)
@@ -392,7 +417,13 @@ namespace RenameFiles
 
             this.button_Reset.Enabled = !block;
             this.button_Rename.Enabled = !block;
+            this.button_removeID.Enabled = !block;
             this.textBox_txtToRemove.Enabled = !block;
+            this.textBox_txtToReplace.Enabled = !block;
+            this.checkBox_replace_with.Enabled = !block;
+            this.checkBox_save_folderLocation.Enabled = !block;
+            this.checkBox_use_regex.Enabled = !block;
+
             this.Refresh();
         }
 

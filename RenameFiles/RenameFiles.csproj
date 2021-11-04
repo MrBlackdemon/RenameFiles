@@ -7,7 +7,7 @@
     <ProjectGuid>{EE803C78-3B51-46AF-9BD2-AC865095E9EF}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>RenameFiles</RootNamespace>
-    <AssemblyName>Rename Files - v1.2.0 - by MrBlackDemon</AssemblyName>
+    <AssemblyName>Rename Files - v1.2.2 - by MrBlackDemon</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -122,10 +122,21 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="rename.ico" />
+    <None Include="resources\images\donate.png" />
     <Content Include="resources\images\exit.png" />
+    <Content Include="resources\images\follow\blog.png" />
+    <Content Include="resources\images\follow\facebook.png" />
+    <Content Include="resources\images\follow\github.png" />
+    <Content Include="resources\images\follow\odnoklassniki.png" />
+    <Content Include="resources\images\follow\send_email.png" />
+    <Content Include="resources\images\follow\skype.png" />
+    <Content Include="resources\images\follow\telegram.png" />
+    <Content Include="resources\images\follow\website.png" />
+    <Content Include="resources\images\follow\youtube.png" />
     <Content Include="resources\images\info.png" />
     <Content Include="resources\images\instruction.png" />
     <Content Include="resources\images\maintenance.png" />
+    <Content Include="resources\images\mrblackdemon.jpg" />
     <Content Include="resources\images\refresh.png" />
     <Content Include="resources\images\update.png" />
     <Content Include="Windows Logo.png" />
